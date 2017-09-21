@@ -1,15 +1,17 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule, JsonpModule} from '@angular/http';
-
+import {TodoListComponent} from './todos/todo-list.component';
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {HomeComponent} from './home/home.component';
+import {UserComponent} from './users/user.component';
 import {UserListComponent} from './users/user-list.component';
 import {UserListService} from './users/user-list.service';
 import {Routing} from './app.routes';
 import {FormsModule} from '@angular/forms';
 import {APP_BASE_HREF} from "@angular/common";
+import {TodoListService} from "./todos/todo-list.service";
 
 
 @NgModule({
@@ -24,10 +26,13 @@ import {APP_BASE_HREF} from "@angular/common";
         AppComponent,
         HomeComponent,
         NavbarComponent,
+        TodoListComponent,
+        UserComponent,
         UserListComponent
     ],
     providers: [
         UserListService,
+        TodoListService,
         {provide: APP_BASE_HREF, useValue: '/'}
     ],
     bootstrap: [AppComponent]
