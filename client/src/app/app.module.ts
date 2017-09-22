@@ -26,9 +26,9 @@ import {TodoListService} from "./todos/todo-list.service";
         AppComponent,
         HomeComponent,
         NavbarComponent,
+        UserListComponent,
         TodoListComponent,
-        UserComponent,
-        UserListComponent
+        UserComponent
     ],
     providers: [
         UserListService,
