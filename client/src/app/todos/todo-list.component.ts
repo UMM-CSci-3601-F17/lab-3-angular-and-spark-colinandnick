@@ -15,7 +15,7 @@ export class TodoListComponent implements OnInit {
 
     }
 
-    public filterTodos(searchOwner: string, searchCategory: string): Todo[] {
+    public filterTodos(searchOwner: string, searchCategory: string, searchContent: string): Todo[] {
 
         this.filteredTodos = this.todos;
 

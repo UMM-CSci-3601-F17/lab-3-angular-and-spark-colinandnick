@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 
 describe("Todo list", () => {
 
-    let userList: TodoListComponent;
+    let todoList: TodoListComponent;
     let fixture: ComponentFixture<TodoListComponent>;
 
     let todoListServiceStub: {
@@ -14,7 +14,7 @@ describe("Todo list", () => {
     };
 
     beforeEach(() => {
-        // stub UserService for test purposes
+        // stub TodoService for test purposes
         todoListServiceStub = {
             getTodos: () => Observable.of([
                 {
@@ -22,21 +22,21 @@ describe("Todo list", () => {
                     owner: "Chris",
                     status: false,
                     body: "UMM",
-                    category: "chris@this.that"
+                    category: "software design"
                 },
                 {
                     id: "pat_id",
                     owner: "Pat",
                     status: false,
                     body: "IBM",
-                    category: "pat@something.com"
+                    category: "video games"
                 },
                 {
                     id: "jamie_id",
                     owner: "Jamie",
                     status: true,
                     body: "Frogs, Inc.",
-                    category: "jamie@frogs.com"
+                    category: "video games"
                 }
             ])
         };
@@ -44,74 +44,77 @@ describe("Todo list", () => {
         TestBed.configureTestingModule({
             //imports: [PipeModule],
             declarations: [TodoListComponent],
-            // providers:    [ UserListService ]  // NO! Don't provide the real service!
+            // providers:    [ todoListService ]  // NO! Don't provide the real service!
             // Provide a test-double instead
-            providers: [{provide: TodoListService, useValue: userListServiceStub}]
+            providers: [{provide: TodoListService, useValue: todoListServiceStub}]
         })
     });
 
     beforeEach(async(() => {
         TestBed.compileComponents().then(() => {
-            fixture = TestBed.createComponent(UserListComponent);
-            userList = fixture.componentInstance;
+            fixture = TestBed.createComponent(TodoListComponent);
+            todoList = fixture.componentInstance;
             fixture.detectChanges();
         });
     }));
 
-    it("contains all the users", () => {
-        expect(userList.users.length).toBe(3);
+    it("contains all the todos", () => {
+        expect(todoList.todos.length).toBe(3);
     });
 
-    it("contains a user named 'Chris'", () => {
-        expect(userList.users.some((user: User) => user.name === "Chris")).toBe(true);
+    it("contains a todo named 'Chris'", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.owner === "Chris")).toBe(true);
     });
 
-    it("contain a user named 'Jamie'", () => {
-        expect(userList.users.some((user: User) => user.name === "Jamie")).toBe(true);
+    it("contain a todo named 'Jamie'", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.owner === "Jamie")).toBe(true);
     });
 
-    it("doesn't contain a user named 'Santa'", () => {
-        expect(userList.users.some((user: User) => user.name === "Santa")).toBe(false);
+    it("doesn't contain a todo named 'Santa'", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.owner === "Santa")).toBe(false);
     });
 
-    it("has two users that are 37 years old", () => {
-        expect(userList.users.filter((user: User) => user.age === 37).length).toBe(2);
+    it("has two todos that are in Video Games", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.category === "video games").length).toBe(2);
+    });
+    it("has two todos with a status of false", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.status == false).length).toBe(2);
     });
 
 });
 
-describe("Misbehaving User List", () => {
-    let userList: UserListComponent;
-    let fixture: ComponentFixture<UserListComponent>;
+describe("Misbehaving Todo List", () => {
+    let todoList: TodoListComponent;
+    let fixture: ComponentFixture<TodoListComponent>;
 
-    let userListServiceStub: {
-        getUsers: () => Observable<User[]>
+    let todoListServiceStub: {
+        getTodos: () => Observable<Todo[]>
     };
 
     beforeEach(() => {
-        // stub UserService for test purposes
-        userListServiceStub = {
-            getUsers: () => Observable.create(observer => {
+        // stub TodoService for test purposes
+        todoListServiceStub = {
+            getTodos: () => Observable.create(observer => {
                 observer.error("Error-prone observable");
             })
         };
 
         TestBed.configureTestingModule({
-            declarations: [UserListComponent],
-            providers: [{provide: UserListService, useValue: userListServiceStub}]
+            declarations: [TodoListComponent],
+            providers: [{provide: TodoListService, useValue: todoListServiceStub}]
         })
     });
 
     beforeEach(async(() => {
         TestBed.compileComponents().then(() => {
-            fixture = TestBed.createComponent(UserListComponent);
-            userList = fixture.componentInstance;
+            fixture = TestBed.createComponent(TodoListComponent);
+            todoList = fixture.componentInstance;
             fixture.detectChanges();
         });
     }));
 
-    it("generates an error if we don't set up a UserListService", () => {
-        // Since the observer throws an error, we don't expect users to be defined.
-        expect(userList.users).toBeUndefined();
+    it("generates an error if we don't set up a TodoListService", () => {
+        // Since the observer throws an error, we don't expect todos to be defined.
+        expect(todoList.todos).toBeUndefined();
     });
 });

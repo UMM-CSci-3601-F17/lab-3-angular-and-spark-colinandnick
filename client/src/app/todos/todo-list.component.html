@@ -14,6 +14,8 @@
 <ul class="list-group" *ngIf="todos; else todosError">
     <li id="todos" *ngFor="let todo of this.filterTodos(todoOwner, todoCategory)" class="list-group-item">
         {{ todo.owner }} is in {{ todo.category }}.
+        <p id="bodyText"> {{ todo.body}} </p>
+        <p id="todoStatus"> {{ todo.status}} </p>
     </li>
 </ul>
 <!-- comment>
