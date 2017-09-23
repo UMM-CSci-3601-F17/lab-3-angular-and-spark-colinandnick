@@ -11,13 +11,23 @@ export class TodoListComponent implements OnInit {
     public todos: Todo[];
     public filteredTodos: Todo[];
 
+    public todoOwner: String;
+    public todoContent: String;
+    public todoCategory: String;
+
     constructor(private todoListService: TodoListService){
 
     }
 
-    public filterTodos(searchOwner: string, searchCategory: string, searchContent: string): Todo[] {
+    public filterTodos(searchOwner: string, searchCategory: string, searchContent: string, searchStatus: boolean): Todo[] {
 
         this.filteredTodos = this.todos;
+
+        /*
+        Note that how the return statements are written affects how the data is
+        displayed on the screen. For instance, an exact match is needed for searchCategory before any
+        data is displayed.
+         */
 
         //Filter by name
         if (searchOwner != null) {
@@ -35,6 +45,12 @@ export class TodoListComponent implements OnInit {
             });
         }
 
+        //Filter by content
+        if (searchContent != null) {
+            this.filteredTodos = this.filteredTodos.filter(todo => {
+                return !searchContent || todo.body.includes(searchContent);
+            })
+        }
         return this.filteredTodos;
     }
 
