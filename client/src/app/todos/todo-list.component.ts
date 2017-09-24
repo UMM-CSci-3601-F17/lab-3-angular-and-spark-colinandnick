@@ -10,17 +10,17 @@ import {Todo} from "./todo";
 export class TodoListComponent implements OnInit {
     public todos: Todo[];
     public filteredTodos: Todo[];
-
+    public todoStatus: boolean;
     public todoOwner: String;
     public todoContent: String;
     public todoCategory: String;
+    public loadReady: boolean = false;
 
     constructor(private todoListService: TodoListService){
 
     }
 
     public filterTodos(searchOwner: string, searchCategory: string, searchContent: string, searchStatus: boolean): Todo[] {
-
         this.filteredTodos = this.todos;
 
         /*
@@ -45,6 +45,7 @@ export class TodoListComponent implements OnInit {
             });
         }
 
+
         //Filter by content
         if (searchContent != null) {
             this.filteredTodos = this.filteredTodos.filter(todo => {
@@ -54,6 +55,10 @@ export class TodoListComponent implements OnInit {
         return this.filteredTodos;
     }
 
+    loadTodos(): void {
+        console.log("yay");
+        this.loadReady = true;
+    }
     ngOnInit(): void {
         //Get Users returns an Observable, basically a "promise" that
         //we will get the data from the server.
