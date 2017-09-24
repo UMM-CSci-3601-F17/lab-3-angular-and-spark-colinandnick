@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoListService} from "./todo-list.service";
 import {Todo} from "./todo";
-
+import {environment} from "../../environments/environment";
 @Component({
     selector: 'todo-list-component',
     templateUrl: 'todo-list.component.html',
@@ -56,7 +56,12 @@ export class TodoListComponent implements OnInit {
         return this.filteredTodos;
     }
 
-
+    categoryChange(catStr): void{
+        this.todoListService.serviceCategory = catStr;
+    }
+    ownerChange(ownStr): void{
+        this.todoListService.serviceOwner = ownStr;
+    }
 
     loadService(): void {
         console.log("yay");
@@ -71,6 +76,7 @@ export class TodoListComponent implements OnInit {
             }
 
         );
+        this.todoListService.todoUrl = environment.API_URL + "todos";
     }
     ngOnInit(): void {
         //Get Users returns an Observable, basically a "promise" that

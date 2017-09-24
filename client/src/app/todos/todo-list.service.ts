@@ -9,25 +9,31 @@ import {environment} from "../../environments/environment";
 
 @Injectable()
 export class TodoListService {
-    private todoUrl: string = environment.API_URL + "todos";
+    public todoUrl: string = environment.API_URL + "todos";
     public isStatus: string = "";
     public serviceCategory: string = "";
+    public serviceOwner: string = "";
     //public loadReady: boolean = false;
 //comment
     constructor(private http: Http) {
     }
 
-    categoryChange(catStr): void{
+   /* categoryChange(catStr): void{
         this.serviceCategory = catStr;
-    }
+    }*/
 
     getTodos(): Observable<Todo[]> {
 
             console.log("server call");
             if (this.serviceCategory !== "") {
                 console.log("category specified");
-                this.todoUrl += "?category=" + this.serviceCategory;
+                this.todoUrl += "?category=" + this.serviceCategory + "&";
             }
+            if (this.serviceOwner !== "") {
+                console.log("owner specified");
+                this.todoUrl += "?owner=" + this.serviceOwner + "&";
+            }
+            console.log(this.serviceCategory);
             let observable: Observable<any> = this.http.request(this.todoUrl);
             return observable.map(res => res.json());
 
