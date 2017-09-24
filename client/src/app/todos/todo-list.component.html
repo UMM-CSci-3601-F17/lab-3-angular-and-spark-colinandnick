@@ -9,9 +9,20 @@
 
         <input #input type="text" placeholder="Filter by owner" (input)="todoOwner = $event.target.value">
         <input #input type="text" placeholder="Filter by category" (input)="todoCategory = $event.target.value">
+        Filter by category:
+        <button (click)="categoryChange('homework')">homework</button>
+        <select [(ngModel)]="serviceCategory">
+            <option value="" >All</option>
+            <option value="software design" >Software Design</option>
+            <option value= "video games">Video Games</option>
+            <option value="homework">Homework</option>
+            <option value="groceries">Groceries</option>
+        </select>
+        {{serviceCategory}}
+
         <input #input type="text" placeholder="Filter by content" (input)="todoContent = $event.target.value">
         <p></p>
-        <button (click)="loadTodos()">Search</button>
+        <button (click)="loadService()">Search</button>
     </li>
     <li id="title" class="list-group-item list-group-item-info">Todo Owner</li>
 </ul>

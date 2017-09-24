@@ -16,6 +16,7 @@ export class TodoListComponent implements OnInit {
     public todoCategory: String;
     public loadReady: boolean = false;
 
+
     constructor(private todoListService: TodoListService){
 
     }
@@ -55,16 +56,11 @@ export class TodoListComponent implements OnInit {
         return this.filteredTodos;
     }
 
-    loadTodos(): void {
+
+
+    loadService(): void {
         console.log("yay");
         this.loadReady = true;
-    }
-    ngOnInit(): void {
-        //Get Users returns an Observable, basically a "promise" that
-        //we will get the data from the server.
-        //
-        //Subscribe waits until the data is fully downloaded, then
-        //performs an action on it (the first lambda)
         this.todoListService.getTodos().subscribe(
             todos => {
                 this.todos = todos;
@@ -73,6 +69,24 @@ export class TodoListComponent implements OnInit {
             err => {
                 console.log(err);
             }
+
         );
+    }
+    ngOnInit(): void {
+        //Get Users returns an Observable, basically a "promise" that
+        //we will get the data from the server.
+        //
+        //Subscribe waits until the data is fully downloaded, then
+        //performs an action on it (the first lambda)
+
+       /* this.todoListService.getTodos().subscribe(
+            todos => {
+                this.todos = todos;
+                this.filteredTodos = this.todos;
+            },
+            err => {
+                console.log(err);
+            }
+        );*/
     }
 }

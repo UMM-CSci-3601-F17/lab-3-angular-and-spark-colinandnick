@@ -276,6 +276,16 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-dropdown@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/angular-dropdown/-/angular-dropdown-0.2.2.tgz#8a891192ac480a2fd1ba66a8b95acf81ce6db10f"
+  dependencies:
+    angular-wormhole "^1.1.0"
+
+angular-wormhole@^1.1.0, angular-wormhole@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/angular-wormhole/-/angular-wormhole-1.1.4.tgz#f15ef743b94eeb02471aefff51e942fbb8c08818"
+
 ansi-escapes@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-2.0.0.tgz#5bae52be424878dd9783e8910e3fc2922e83c81b"
