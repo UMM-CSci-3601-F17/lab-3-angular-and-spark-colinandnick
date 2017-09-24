@@ -21,21 +21,21 @@ describe("Todo list", () => {
                     id: "chris_id",
                     owner: "Chris",
                     status: false,
-                    body: "UMM",
+                    body: "Write tests for todo-list component",
                     category: "software design"
                 },
                 {
                     id: "pat_id",
                     owner: "Pat",
                     status: false,
-                    body: "IBM",
+                    body: "Win a game of rocket league",
                     category: "video games"
                 },
                 {
                     id: "jamie_id",
                     owner: "Jamie",
                     status: true,
-                    body: "Frogs, Inc.",
+                    body: "Finish installing steam",
                     category: "video games"
                 }
             ])
@@ -74,11 +74,60 @@ describe("Todo list", () => {
         expect(todoList.todos.some((todo: Todo) => todo.owner === "Santa")).toBe(false);
     });
 
+    it("has at least one todo with a status of false", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.status == false)).toBe(true);
+    });
+
+    it("has at least one todo with a status of true", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.status === true)).toBe(true);
+    });
+
+    it("has two todos with a status of false", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.status === false).length).toBe(2);
+    });
+
+    it("has one todos with a status of true", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.status === true).length).toBe(1);
+    });
+
     it("has two todos that are in Video Games", () => {
         expect(todoList.todos.filter((todo: Todo) => todo.category === "video games").length).toBe(2);
     });
-    it("has two todos with a status of false", () => {
-        expect(todoList.todos.filter((todo: Todo) => todo.status == false).length).toBe(2);
+
+    it("has one todo with a category of software design", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.category === "software design").length).toBe(1);
+    });
+
+    it("has no todos with a category of groceries", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.category === "groceries").length).toBe(0);
+    });
+
+    it("has no todos with a category of groceries", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.category === "groceries")).toBe(false);
+    });
+
+    it("has at least one todo that is in in Video Games", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.category === "video games")).toBe(true);
+    });
+
+    it("has at least one todo that is in software design", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.category === "software design")).toBe(true);
+    });
+
+    it("has one todo that has the content 'Win a game of rocket league' in the body", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.body === "Win a game of rocket league").length).toBe(1);
+    });
+
+    it("has no todos that has the content 'Ketchup' in the body", () => {
+        expect(todoList.todos.filter((todo: Todo) => todo.body === "Ketchup").length).toBe(0);
+    });
+
+    it("has a todo with the body: 'Finish installing steam'", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.body === "Finish installing steam")).toBe(true);
+    });
+
+    it("has no todos with the body: 'Fix copying machine'", () => {
+        expect(todoList.todos.some((todo: Todo) => todo.body === "Fix copying machine")).toBe(false);
     });
 
 });
