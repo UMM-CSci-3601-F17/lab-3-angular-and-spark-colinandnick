@@ -2,7 +2,7 @@ export interface Todo {
     //interface
     id: string,
     owner: string,
-    status: boolean,
+    status: string,
     body: string,
     category: string
 }
