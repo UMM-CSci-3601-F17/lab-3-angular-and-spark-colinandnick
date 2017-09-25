@@ -10,7 +10,6 @@ import {environment} from "../../environments/environment";
 export class TodoListComponent implements OnInit {
     public todos: Todo[];
     public filteredTodos: Todo[];
-    public todoStatus: boolean;
     public todoOwner: String;
     public todoContent: String;
     public todoCategory: String;
@@ -21,7 +20,8 @@ export class TodoListComponent implements OnInit {
 
     }
 
-    public filterTodos(searchOwner: string, searchCategory: string, searchContent: string, searchStatus: boolean): Todo[] {
+    public filterTodos(searchOwner: string, searchCategory: string, searchContent: string, searchStatus: string): Todo[] {
+
         this.filteredTodos = this.todos;
 
         /*
@@ -46,13 +46,20 @@ export class TodoListComponent implements OnInit {
             });
         }
 
-
         //Filter by content
         if (searchContent != null) {
             this.filteredTodos = this.filteredTodos.filter(todo => {
                 return !searchContent || todo.body.includes(searchContent);
             })
         }
+
+        //Filter by status
+        if (searchStatus != null) {
+            this.filteredTodos = this.filteredTodos.filter(todo => {
+                return todo.status === searchStatus;
+            });
+        }
+
         return this.filteredTodos;
     }
 
@@ -87,8 +94,7 @@ export class TodoListComponent implements OnInit {
         //
         //Subscribe waits until the data is fully downloaded, then
         //performs an action on it (the first lambda)
-
-       /* this.todoListService.getTodos().subscribe(
+        this.todoListService.getTodos().subscribe(
             todos => {
                 this.todos = todos;
                 this.filteredTodos = this.todos;
@@ -96,6 +102,6 @@ export class TodoListComponent implements OnInit {
             err => {
                 console.log(err);
             }
-        );*/
+        );
     }
 }
