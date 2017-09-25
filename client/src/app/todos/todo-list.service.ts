@@ -13,6 +13,7 @@ export class TodoListService {
     public isStatus: string = "";
     public serviceCategory: string = "";
     public serviceOwner: string = "";
+    public serviceLimit: number = 0;
     //public loadReady: boolean = false;
 //comment
     constructor(private http: Http) {
@@ -23,16 +24,34 @@ export class TodoListService {
     }*/
 
     getTodos(): Observable<Todo[]> {
-
+            if (this.serviceLimit !== 0) {
+                 console.log("limit specified");
+                if(this.todoUrl.indexOf('&')!== -1){
+                    this.todoUrl += 'limit=' + this.serviceLimit +'&';
+                }
+                else{this.todoUrl += "?limit=" + this.serviceLimit + "&";}
+                 console.log(this.todoUrl);
+            }
             console.log("server call");
             if (this.serviceCategory !== "") {
                 console.log("category specified");
-                this.todoUrl += "?category=" + this.serviceCategory + "&";
+                if(this.todoUrl.indexOf('&')!== -1){
+                    this.todoUrl += 'category=' + this.serviceCategory +'&';
+                }
+                else{this.todoUrl += "?category=" + this.serviceCategory + "&";}
+
+                console.log(this.todoUrl);
             }
             if (this.serviceOwner !== "") {
                 console.log("owner specified");
-                this.todoUrl += "?owner=" + this.serviceOwner + "&";
+
+                if(this.todoUrl.indexOf('&')!== -1){
+                    this.todoUrl += 'owner=' + this.serviceOwner +'&';
+                }
+                else{this.todoUrl += "?owner=" + this.serviceOwner + "&";}
+                console.log(this.todoUrl);
             }
+
             console.log(this.serviceCategory);
             let observable: Observable<any> = this.http.request(this.todoUrl);
             return observable.map(res => res.json());
