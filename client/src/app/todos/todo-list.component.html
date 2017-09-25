@@ -1,3 +1,4 @@
+<h1>Search for Tasks Using the Options Below</h1>
 <ul class="list-group">
     <li class="list-group-item list-group-item-info">
 
@@ -7,9 +8,7 @@
         <input #input type="text" placeholder="Filter by owner" (input)="todoOwner = $event.target.value">
         <input #input type="text" placeholder="Filter by category" (input)="todoCategory = $event.target.value">
         <input #input type="text" placeholder="Filter by content" (input)="todoContent = $event.target.value">
-
     </li>
-    <li id="title" class="list-group-item list-group-item-info">Todo Owner</li>
 </ul>
 
 <ul class="list-group" *ngIf="todos; else todosError">
