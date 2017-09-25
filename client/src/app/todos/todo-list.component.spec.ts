@@ -132,6 +132,112 @@ describe("Todo list", () => {
 
 });
 
+describe("Todo list filtering method", () => {
+
+    let todoList: TodoListComponent;
+    let fixture: ComponentFixture<TodoListComponent>;
+
+    let todoListServiceStub: {
+        getTodos: () => Observable<Todo[]>
+    };
+
+    beforeEach(() => {
+        // stub TodoService for test purposes
+        todoListServiceStub = {
+            getTodos: () => Observable.of([
+                {
+                    id: "chris_id",
+                    owner: "Chris",
+                    status: false,
+                    body: "Write tests for todo-list component",
+                    category: "software design"
+                },
+                {
+                    id: "pat_id",
+                    owner: "Pat",
+                    status: false,
+                    body: "Win a game of rocket league",
+                    category: "video games"
+                },
+                {
+                    id: "jamie_id",
+                    owner: "Jamie",
+                    status: true,
+                    body: "Finish installing steam",
+                    category: "video games"
+                },
+                {
+                    id: "jamie_id",
+                    owner: "Jamie",
+                    status: true,
+                    body: "Complete math problem 7",
+                    category: "homework"
+                }
+            ])
+        };
+
+        TestBed.configureTestingModule({
+            declarations: [TodoListComponent],
+            providers: [{provide: TodoListService, useValue: todoListServiceStub}]
+        })
+    });
+
+    beforeEach(async(() => {
+        TestBed.compileComponents().then(() => {
+            fixture = TestBed.createComponent(TodoListComponent);
+            todoList = fixture.componentInstance;
+            fixture.detectChanges();
+        });
+    }));
+
+    it("can return todos that only belong to Jamie", () => {
+    expect(todoList.filterTodos("Jamie","","", null).length).toBe(2)
+    });
+
+    it("will not return todos that belong to Santa", () => {
+        expect(todoList.filterTodos("Santa","","", null).length).toBe(0)
+    });
+
+    it("can return todos that are in the video games category", () => {
+        expect(todoList.filterTodos("","video games","", null).length).toBe(2)
+    });
+
+    it("will not return todos that are in the astronaut category", () => {
+        expect(todoList.filterTodos("","astronaut","", null).length).toBe(0)
+    });
+
+    it("can return todos that have the content 'rocket' in their body", () => {
+        expect(todoList.filterTodos("","","rocket", null).length).toBe(1)
+    });
+
+    it("can return todos that have the letter 'o' in their body", () => {
+        expect(todoList.filterTodos("","","o", null).length).toBe(3)
+    });
+
+    it("will not return todos that contain 'supercalifragileisticexpialadocious' in their body", () => {
+        expect(todoList.filterTodos("","","supercalifragileisticexpialadocious", null).length).toBe(0)
+    });
+
+    it("will not return todos that contain the letter 'z' in their body", () => {
+        expect(todoList.filterTodos("","","z", null).length).toBe(0)
+    });
+
+    it("can return todos that only have a true status", () => {
+        expect(todoList.filterTodos("","","", true).length).toBe(2)
+    });
+
+    it("can return todos that only have a false status", () => {
+        expect(todoList.filterTodos("","","", false).length).toBe(2)
+    });
+
+    it("will return all todos if no status is specified", () => {
+        expect(todoList.filterTodos("Jamie","","", null).length).toBe(4)
+    });
+
+
+
+});
+
 describe("Misbehaving Todo List", () => {
     let todoList: TodoListComponent;
     let fixture: ComponentFixture<TodoListComponent>;
