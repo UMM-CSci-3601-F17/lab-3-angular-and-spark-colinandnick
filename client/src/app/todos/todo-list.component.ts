@@ -7,10 +7,11 @@ import {Todo} from "./todo";
     templateUrl: 'todo-list.component.html',
     providers: []
 })
+
+
 export class TodoListComponent implements OnInit {
     public todos: Todo[];
     public filteredTodos: Todo[];
-
     public todoOwner: String;
     public todoContent: String;
     public todoCategory: String;
@@ -51,9 +52,17 @@ export class TodoListComponent implements OnInit {
                 return !searchContent || todo.body.includes(searchContent);
             })
         }
+
+        //Filter by status
+        if (searchStatus != null) {
+            this.filteredTodos = this.filteredTodos.filter(todo => {
+                return todo.status == searchStatus;
+            });
+        }
+
         return this.filteredTodos;
     }
-    
+
 
     ngOnInit(): void {
         //Get Users returns an Observable, basically a "promise" that
