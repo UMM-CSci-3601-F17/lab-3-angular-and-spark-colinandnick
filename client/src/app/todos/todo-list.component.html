@@ -4,7 +4,7 @@
         <!-- The names userName and userAge, different from searchName and searchAge, are being
         used here only to illustrate that these inputs are not necessarily explicitly referencable from within
         the typescript. Unless made to do so by defining a userName variable within this component's typescript file-->
-        <input #input type="text" placeholder="Specify Owner" (input)="ownerChange($event.target.value)">
+        <input id="owner" #input type="text" placeholder="Specify Owner" (input)="ownerChange($event.target.value)">
         <input id="content" #input type="text" placeholder="Filter by content" (input)="todoContent = $event.target.value">
         Categories:
         <!-- Big thank you to Ethan for helping us make the template for a dropdown that can bind selections -->
@@ -23,7 +23,7 @@
         </select>
         Submit Selections:
         <button id="load-button" (click)="loadService()">Search</button>
-<!-- Note that the load button is now only effective for filtering owner information -->
+        <!-- Note that the load button is now only effective for filtering owner information -->
     </li>
     <li id="title" class="list-group-item list-group-item-info">Tasks</li>
 </ul>

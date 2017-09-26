@@ -51,7 +51,6 @@ export class TodoPage {
         input.click();
         input.sendKeys(status);
         this.pressEnter();
-        //this.toggleSearch();
     }
 
 
@@ -72,11 +71,16 @@ export class TodoPage {
     }
 
 
+    getFilterInterface(ui: string) {
+        let userInterface = element(by.id(ui)).getText();
+        this.highlightElement(by.id(ui));
+
+        return userInterface;
+    }
+
 
     getFirstTodo() {
         let todo = element(by.id('subject-line')).getText();
-        //this.highlightElement(by.id('todos'));
-
         return todo;
     }
 }

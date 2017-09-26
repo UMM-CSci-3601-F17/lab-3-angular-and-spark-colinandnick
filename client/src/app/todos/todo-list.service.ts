@@ -25,6 +25,11 @@ export class TodoListService {
     filtering on the client side is less intensive because there are less todos. Please
     note that one of the implications of this decision is that our "Search" button
     is only effective for Owner filtering.
+
+    We had also implemented a limit function that operated on the server side, but
+    when filtering by multiple properties through the client filters, we would get a different
+    number of todos than what we would expect from the limit we set (it would also break the
+    the page in certain cases). So for the sake of time and complexity this feature was removed.
      */
 
 

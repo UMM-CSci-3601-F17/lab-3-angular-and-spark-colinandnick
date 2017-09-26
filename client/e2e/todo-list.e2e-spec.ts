@@ -71,4 +71,33 @@ describe('angular-spark-lab', () => {
        expect(page.getFirstTodo()).toEqual('Workman has completed this software design task:')
     });
 
+    it('Should have an owner filter box', () => {
+        page.navigateTo();
+        expect(page.getFilterInterface('owner')).toEqual("")
+    });
+
+    it('Should have an content filter box', () => {
+        page.navigateTo();
+        expect(page.getFilterInterface('content')).toEqual("")
+    });
+
+    /*
+    Note that to make it easier to test the existence of the category and status dropdowns,
+    we checked that an option inside of these elements was accessible.
+     */
+    it('Should have a category dropdown element', () => {
+        page.navigateTo();
+        expect(page.getFilterInterface('homework')).toEqual("Homework")
+    });
+
+    it('Should have a status dropdown element', () => {
+        page.navigateTo();
+        expect(page.getFilterInterface('true')).toEqual("Complete")
+    });
+
+    it('Should have a Search button for submitting filters', () => {
+       page.navigateTo();
+       expect(page.getFilterInterface('load-button')).toEqual("Search");
+
+    });
 });

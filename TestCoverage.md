@@ -7,7 +7,8 @@ possible choice to verify that our dropdown functionality is intact. Content
 is also checked. The testing of the client-side filters also ensures that the
 server is returning all todos when it is asked to do so. We also included a test
 with multiple parameters to make sure that combinations are possible and are
-working properly.
+working properly. Finally, we added tests to ensure that the proper filtering
+user interfaces were being displayed on the screen.
 
 Client-Side
 

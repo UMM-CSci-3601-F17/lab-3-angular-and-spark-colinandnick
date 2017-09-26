@@ -11,7 +11,6 @@ import {Todo} from "./todo";
 export class TodoListComponent implements OnInit{
     public todos: Todo[];
     public filteredTodos: Todo[];
-    public todoOwner: String;
     public todoContent: String;
     public todoCategory: String;
     public todoStatus: String;
@@ -25,12 +24,6 @@ export class TodoListComponent implements OnInit{
     public filterTodos(searchCategory: string, searchContent: string, searchStatus: string): Todo[] {
 
         this.filteredTodos = this.todos;
-
-        /*
-        Note that how the return statements are written affects how the data is
-        displayed on the screen. For instance, an exact match is needed for searchCategory before any
-        data is displayed.
-         */
 
         //Filter by category
         if (searchCategory != null) {
