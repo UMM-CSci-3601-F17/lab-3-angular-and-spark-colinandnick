@@ -26,6 +26,24 @@ describe('angular-spark-lab', () => {
         expect(page.getFirstTodo()).toEqual("Fry has completed this homework task:");
     });
 
+    it('Should select a category and check that it returned correct element', () => {
+        page.navigateTo();
+        page.grabACategory('software design');
+        expect(page.getFirstTodo()).toEqual("Blanche has not completed this software design task:");
+    });
+
+    it('Should select a category and check that it returned correct element', () => {
+        page.navigateTo();
+        page.grabACategory('groceries');
+        expect(page.getFirstTodo()).toEqual("Blanche has completed this groceries task:");
+    });
+
+    it('Should select a category and check that it returned correct element', () => {
+        page.navigateTo();
+        page.grabACategory('video games');
+        expect(page.getFirstTodo()).toEqual("Fry has not completed this video games task:");
+    });
+
     it('Should select true for status and have the completed todos appear on the page', () => {
         page.navigateTo();
         page.selectStatus('Complete');
@@ -36,6 +54,21 @@ describe('angular-spark-lab', () => {
         page.navigateTo();
         page.selectStatus('Incomplete');
         expect(page.getFirstTodo()).toEqual("Blanche has not completed this software design task:")
+    });
+
+    it('Should only return todos that contain particular content', () => {
+        page.navigateTo();
+        page.filterByContent('Excepteur');
+        expect(page.getFirstTodo()).toEqual("Blanche has completed this homework task:")
+    });
+
+    it('Should correctly return todos that are filtered by multiple properties', () => {
+       page.navigateTo();
+       page.filterByContent('velit');
+       page.selectStatus('Complete');
+       page.typeAnOwner('Workman');
+       page.grabACategory('software design');
+       expect(page.getFirstTodo()).toEqual('Workman has completed this software design task:')
     });
 
 });

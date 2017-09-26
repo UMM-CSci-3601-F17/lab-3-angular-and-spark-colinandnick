@@ -15,7 +15,7 @@
             <option id="groceries" value="groceries">Groceries</option>
             <option id="video-games" value="video games">Video Games</option>
         </select>
-        <input #input type="text" placeholder="Filter by content" (input)="todoContent = $event.target.value">
+        <input id="content" #input type="text" placeholder="Filter by content" (input)="todoContent = $event.target.value">
         <select id="status" #input type="text" placeholder="Filter by status" (input)="todoStatus=$event.target.value">
             <option id="any-status" value="">Any status</option>
             <option id="true" value="true">Complete</option>

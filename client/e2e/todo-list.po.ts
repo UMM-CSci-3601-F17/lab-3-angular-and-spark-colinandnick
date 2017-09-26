@@ -58,11 +58,12 @@ export class TodoPage {
         browser.actions().sendKeys(Key.ARROW_UP).perform();
     }
 
-    limitTodos() {
-        let input = element(by.tagName('input'));
+    filterByContent(content: string) {
+        let input = element(by.id('content'));
         input.click();
-        input.sendKeys(Key.TAB);
+        input.sendKeys(content);
     }
+
     toggleSearch() {
         let input = element(by.id('load-button'));
         input.click();
