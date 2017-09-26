@@ -4,14 +4,15 @@
         <!-- The names userName and userAge, different from searchName and searchAge, are being
         used here only to illustrate that these inputs are not necessarily explicitly referencable from within
         the typescript. Unless made to do so by defining a userName variable within this component's typescript file-->
-        <input #input type="number" placeholder="Limit Results?" (input)="limitChange($event.target.value)">
+
         <input #input type="text" placeholder="Specify Owner" (input)="ownerChange($event.target.value)">
-        <select #input type="text" placeholder="Filter by category" (input)="todoCategory = $event.target.value">
-            <option value="">Any category</option>
-            <option value="software design">Software Design</option>
-            <option value="homework">Homework</option>
-            <option value="groceries">Groceries</option>
-            <option value="video games">Video Games</option>
+        Categories:
+        <select id='categories' #input type="text" placeholder="Filter by category" (input)="todoCategory = $event.target.value">
+            <option id="any" value="">Any category</option>
+            <option id="software-design" value="software design">Software Design</option>
+            <option id='homework' value="homework">Homework</option>
+            <option id="groceries" value="groceries">Groceries</option>
+            <option id="video-games" value="video games">Video Games</option>
         </select>
         <input #input type="text" placeholder="Filter by content" (input)="todoContent = $event.target.value">
         <select #input type="text" placeholder="Filter by status" (input)="todoStatus=$event.target.value">

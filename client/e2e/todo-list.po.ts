@@ -31,6 +31,16 @@ export class TodoPage {
         let input = element(by.tagName('input'));
         input.click();
         input.sendKeys(name);
+
+    }
+
+    grabACategory(category: string) {
+        let input = element(by.id('categories'));
+        //let inputElement = element(by.id(category));
+        input.click();
+        input.sendKeys(category);
+        this.pressEnter();
+        this.toggleSearch();
     }
 
     selectUpKey() {
@@ -48,9 +58,15 @@ export class TodoPage {
 
     }
 
+    pressEnter() {
+        browser.actions().sendKeys(Key.ENTER).perform();
+    }
+
+
+
     getFirstTodo() {
-        let todo = element(by.id('todos')).getText();
-        this.highlightElement(by.id('todos'));
+        let todo = element(by.id('subject-line')).getText();
+        //this.highlightElement(by.id('todos'));
 
         return todo;
     }

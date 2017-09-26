@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoListService} from "./todo-list.service";
 import {Todo} from "./todo";
-import {environment} from "../../environments/environment";
+
 @Component({
     selector: 'todo-list-component',
     templateUrl: 'todo-list.component.html',
     styleUrls: ['../app.component.css'],
     providers: []
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent  {
     public todos: Todo[];
     public filteredTodos: Todo[];
     public todoOwner: String;
@@ -89,22 +89,7 @@ export class TodoListComponent implements OnInit {
             }
 
         );
-        this.todoListService.todoUrl = environment.API_URL + "todos";
+
     }
-    ngOnInit(): void {
-        //Get Users returns an Observable, basically a "promise" that
-        //we will get the data from the server.
-        //
-        //Subscribe waits until the data is fully downloaded, then
-        //performs an action on it (the first lambda)
-        this.todoListService.getTodos().subscribe(
-            todos => {
-                this.todos = todos;
-                this.filteredTodos = this.todos;
-            },
-            err => {
-                console.log(err);
-            }
-        );
-    }
+
 }

@@ -9,11 +9,11 @@ import {environment} from "../../environments/environment";
 
 @Injectable()
 export class TodoListService {
-    public todoUrl: string = environment.API_URL + "todos";
+    private todoUrl: string = environment.API_URL + "todos";
     public isStatus: string = "";
     public serviceCategory: string = "";
     public serviceOwner: string = "";
-    public serviceLimit: number = 0;
+    public serviceLimit: number = null;
     //public loadReady: boolean = false;
 //comment
     constructor(private http: Http) {
@@ -24,7 +24,8 @@ export class TodoListService {
     }*/
 
     getTodos(): Observable<Todo[]> {
-            if (this.serviceLimit !== 0) {
+        this.todoUrl = environment.API_URL + "todos";
+            if (this.serviceLimit !== null) {
                  console.log("limit specified");
                 if(this.todoUrl.indexOf('&')!== -1){
                     this.todoUrl += 'limit=' + this.serviceLimit +'&';

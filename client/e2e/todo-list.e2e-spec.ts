@@ -13,25 +13,21 @@ describe('angular-spark-lab', () => {
         expect(page.getTodoTitle()).toEqual('Tasks');
     });
 
-    it('should type something in filer name box and check that it returned correct element', () => {
+    it('should type something in the Owner box and check that it returned correct element', () => {
         page.navigateTo();
         page.typeAnOwner("workman");
         page.toggleSearch();
-        expect(page.getFirstTodo()).toEqual("Workman is in software design");
+        expect(page.getFirstTodo()).toEqual("Workman has completed this software design task:");
     });
 
-    it('should click on the limit 10 times and return 10 elements then ', () => {
+    it('Should select a category and check that it returned correct element', () => {
         page.navigateTo();
-        page.limitTodos();
-        for (let i = 0; i < 10; i++) {
-            page.selectUpKey();
-        }
+        page.grabACategory('homework');
+        expect(page.getFirstTodo()).toEqual("Fry has completed this homework task:");
 
-        expect(page.getFirstTodo()).toEqual("Stokes Clayton is 27 years old");
-
-        page.typeAnOwner("Merrill");
-
-        expect(page.getFirstTodo()).toEqual("Merrill Parker is 27 years old");
+        //page.typeAnOwner("Blanche");
+        //page.toggleSearch();
+        //expect(page.getFirstTodo()).toEqual("Blanche has not completed this homework task:");
 
     });
 });
