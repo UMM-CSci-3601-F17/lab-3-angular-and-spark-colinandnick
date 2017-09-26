@@ -226,6 +226,9 @@ describe("Todo list filtering method", () => {
         expect(todoList.filterTodos("","", null).length).toBe(4)
     });
 
+    it("will correctly return todos with multiple filtered properties", () => {
+        expect(todoList.filterTodos("software design","test", "false").length).toBe(1)
+    });
 
 
 });
