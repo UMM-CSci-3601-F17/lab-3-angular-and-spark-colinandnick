@@ -8,7 +8,7 @@ import {Todo} from "./todo";
     styleUrls: ['../app.component.css'],
     providers: []
 })
-export class TodoListComponent  {
+export class TodoListComponent implements OnInit{
     public todos: Todo[];
     public filteredTodos: Todo[];
     public todoOwner: String;
@@ -90,6 +90,22 @@ export class TodoListComponent  {
 
         );
 
+    }
+    ngOnInit(): void {
+        //Get Users returns an Observable, basically a "promise" that
+        //we will get the data from the server.
+        //
+        //Subscribe waits until the data is fully downloaded, then
+        //performs an action on it (the first lambda)
+        this.todoListService.getTodos().subscribe(
+            todos => {
+                this.todos = todos;
+                this.filteredTodos = this.todos;
+            },
+            err => {
+                console.log(err);
+            }
+        );
     }
 
 }
