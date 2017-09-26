@@ -24,10 +24,18 @@ describe('angular-spark-lab', () => {
         page.navigateTo();
         page.grabACategory('homework');
         expect(page.getFirstTodo()).toEqual("Fry has completed this homework task:");
-
-        //page.typeAnOwner("Blanche");
-        //page.toggleSearch();
-        //expect(page.getFirstTodo()).toEqual("Blanche has not completed this homework task:");
-
     });
+
+    it('Should select true for status and have the completed todos appear on the page', () => {
+        page.navigateTo();
+        page.selectStatus('Complete');
+        expect(page.getFirstTodo()).toEqual("Fry has completed this homework task:")
+    });
+
+    it('Should select false for status and have the incomplete todos appear on the page', () => {
+        page.navigateTo();
+        page.selectStatus('Incomplete');
+        expect(page.getFirstTodo()).toEqual("Blanche has not completed this software design task:")
+    });
+
 });

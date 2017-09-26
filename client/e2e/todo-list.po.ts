@@ -34,13 +34,24 @@ export class TodoPage {
 
     }
 
+    /*
+    We credit Ethan again with helping us to get the end to end
+    testing to recognize when a filter has been selected from a dropdown.
+     */
     grabACategory(category: string) {
         let input = element(by.id('categories'));
-        //let inputElement = element(by.id(category));
         input.click();
         input.sendKeys(category);
         this.pressEnter();
         this.toggleSearch();
+    }
+
+    selectStatus(status: string) {
+        let input = element(by.id('status'));
+        input.click();
+        input.sendKeys(status);
+        this.pressEnter();
+        //this.toggleSearch();
     }
 
     selectUpKey() {
