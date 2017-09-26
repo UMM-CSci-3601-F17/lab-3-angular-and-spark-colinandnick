@@ -20,7 +20,7 @@ export class TodoPage {
         return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
     }
 
-    getUserTitle() {
+    getTodoTitle() {
         let title = element(by.id('title')).getText();
         this.highlightElement(by.id('title'));
 
@@ -41,6 +41,11 @@ export class TodoPage {
         let input = element(by.tagName('input'));
         input.click();
         input.sendKeys(Key.TAB);
+    }
+    toggleSearch() {
+        let input = element(by.id('load-button'));
+        input.click();
+
     }
 
     getFirstTodo() {

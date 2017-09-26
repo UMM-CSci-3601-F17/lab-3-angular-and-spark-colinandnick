@@ -13,9 +13,9 @@
             <option value="true">Complete</option>
             <option value="false">Incomplete</option>
         </select>
-        <button (click)="loadService()">Search</button>
+        <button id="load-button" (click)="loadService()">Search</button>
     </li>
-    <li id="title" class="list-group-item list-group-item-info"></li>
+    <li id="title" class="list-group-item list-group-item-info">Tasks</li>
 </ul>
 <div *ngIf="loadReady">
 <ul class="list-group" *ngIf="todos; else todosError">

@@ -8,14 +8,15 @@ describe('angular-spark-lab', () => {
         page = new TodoPage();
     });
 
-    it('should get and highlight User Name attribute ', () => {
+    it('should get and highlight Tasks attribute ', () => {
         page.navigateTo();
-        expect(page.getUserTitle()).toEqual('Todo Owner');
+        expect(page.getTodoTitle()).toEqual('Tasks');
     });
 
     it('should type something in filer name box and check that it returned correct element', () => {
         page.navigateTo();
         page.typeAnOwner("workman");
+        page.toggleSearch();
         expect(page.getFirstTodo()).toEqual("Workman is in software design");
     });
 
