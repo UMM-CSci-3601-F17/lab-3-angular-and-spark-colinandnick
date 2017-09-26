@@ -8,16 +8,20 @@
         <input #input type="text" placeholder="Specify Owner" (input)="ownerChange($event.target.value)">
         <input #input type="text" placeholder="Filter by category" (input)="todoCategory = $event.target.value">
         <input #input type="text" placeholder="Filter by content" (input)="todoContent = $event.target.value">
+        <select #input type="text" placeholder="Filter by status" (input)="todoStatus=$event.target.value">
+            <option value="">Any</option>
+            <option value="true">Complete</option>
+            <option value="false">Incomplete</option>
+        </select>
         <button (click)="loadService()">Search</button>
     </li>
-    <li id="title" class="list-group-item list-group-item-info">Todo Owner</li>
+    <li id="title" class="list-group-item list-group-item-info"></li>
 </ul>
 <div *ngIf="loadReady">
 <ul class="list-group" *ngIf="todos; else todosError">
-    <li id="todos" [ngStyle]="{'background-color':todo.status ? 'lightgreen' : 'lightcoral'}" *ngFor="let todo of this.filterTodos(todoOwner, todoCategory, todoContent)" class="list-group-item">
-        {{ todo.owner }} has a {{ todo.category }} task:
+    <li id="todos" [ngStyle]="{'background-color':todo.status ? 'lightgreen' : 'lightcoral'}" *ngFor="let todo of this.filterTodos(todoOwner, todoCategory, todoContent, todoStatus)" class="list-group-item">
+        <p id="subject-line"> {{ todo.owner }} has {{todo.status ? 'completed':'not completed'}} this {{ todo.category }} task: </p>
         <p id="bodyText"> {{ todo.body}} </p>
-        <p id="todoStatus"> This task is {{todo.status ? "Complete" : "Incomplete"}}.</p>
     </li>
 </ul>
 </div>

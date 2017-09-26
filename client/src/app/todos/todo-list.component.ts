@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 @Component({
     selector: 'todo-list-component',
     templateUrl: 'todo-list.component.html',
+    styleUrls: ['../app.component.css'],
     providers: []
 })
 export class TodoListComponent implements OnInit {
@@ -13,6 +14,7 @@ export class TodoListComponent implements OnInit {
     public todoOwner: String;
     public todoContent: String;
     public todoCategory: String;
+    public todoStatus: String;
     public loadReady: boolean = false;
 
 
@@ -55,8 +57,9 @@ export class TodoListComponent implements OnInit {
 
         //Filter by status
         if (searchStatus != null) {
+            searchStatus = searchStatus.toLocaleLowerCase();
             this.filteredTodos = this.filteredTodos.filter(todo => {
-                return todo.status === searchStatus;
+                return !searchStatus || todo.status.toString().toLowerCase().indexOf(searchStatus) !== -1;
             });
         }
 

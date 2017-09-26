@@ -20,21 +20,21 @@ describe("Todo list", () => {
                 {
                     id: "chris_id",
                     owner: "Chris",
-                    status: false,
+                    status: "false",
                     body: "Write tests for todo-list component",
                     category: "software design"
                 },
                 {
                     id: "pat_id",
                     owner: "Pat",
-                    status: false,
+                    status: "false",
                     body: "Win a game of rocket league",
                     category: "video games"
                 },
                 {
                     id: "jamie_id",
                     owner: "Jamie",
-                    status: true,
+                    status: "true",
                     body: "Finish installing steam",
                     category: "video games"
                 }
@@ -75,19 +75,19 @@ describe("Todo list", () => {
     });
 
     it("has at least one todo with a status of false", () => {
-        expect(todoList.todos.some((todo: Todo) => todo.status == false)).toBe(true);
+        expect(todoList.todos.some((todo: Todo) => todo.status == "false")).toBe(true);
     });
 
     it("has at least one todo with a status of true", () => {
-        expect(todoList.todos.some((todo: Todo) => todo.status === true)).toBe(true);
+        expect(todoList.todos.some((todo: Todo) => todo.status === "true")).toBe(true);
     });
 
     it("has two todos with a status of false", () => {
-        expect(todoList.todos.filter((todo: Todo) => todo.status === false).length).toBe(2);
+        expect(todoList.todos.filter((todo: Todo) => todo.status === "false").length).toBe(2);
     });
 
     it("has one todos with a status of true", () => {
-        expect(todoList.todos.filter((todo: Todo) => todo.status === true).length).toBe(1);
+        expect(todoList.todos.filter((todo: Todo) => todo.status === "true").length).toBe(1);
     });
 
     it("has two todos that are in Video Games", () => {
@@ -148,28 +148,28 @@ describe("Todo list filtering method", () => {
                 {
                     id: "chris_id",
                     owner: "Chris",
-                    status: false,
+                    status: "false",
                     body: "Write tests for todo-list component",
                     category: "software design"
                 },
                 {
                     id: "pat_id",
                     owner: "Pat",
-                    status: false,
+                    status: "false",
                     body: "Win a game of rocket league",
                     category: "video games"
                 },
                 {
                     id: "jamie_id",
                     owner: "Jamie",
-                    status: true,
+                    status: "true",
                     body: "Finish installing steam",
                     category: "video games"
                 },
                 {
                     id: "jamie_id",
                     owner: "Jamie",
-                    status: true,
+                    status: "true",
                     body: "Complete math problem 7",
                     category: "homework"
                 }
@@ -219,19 +219,19 @@ describe("Todo list filtering method", () => {
     });
 
     it("will not return todos that contain the letter 'z' in their body", () => {
-        expect(todoList.filterTodos("","","z", null).length).toBe(0)
+        expect(todoList.filterTodos("","","z", "").length).toBe(0)
     });
 
     it("can return todos that only have a true status", () => {
-        expect(todoList.filterTodos("","","", true).length).toBe(2)
+        expect(todoList.filterTodos("","","", "true").length).toBe(2)
     });
 
     it("can return todos that only have a false status", () => {
-        expect(todoList.filterTodos("","","", false).length).toBe(2)
+        expect(todoList.filterTodos("","","", "false").length).toBe(2)
     });
 
     it("will return all todos if no status is specified", () => {
-        expect(todoList.filterTodos("Jamie","","", null).length).toBe(4)
+        expect(todoList.filterTodos("","","", null).length).toBe(4)
     });
 
 

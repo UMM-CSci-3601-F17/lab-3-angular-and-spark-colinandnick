@@ -1,7 +1,9 @@
-p {
-    font-size: 3em;
+#subject-line {
+    font-size: 1.5em;
 }
 
-#subject-line{
-    margin: 4%;
+#bodyText {
+    font-size: 1.1em;
+    font-weight: lighter;
 }
+
