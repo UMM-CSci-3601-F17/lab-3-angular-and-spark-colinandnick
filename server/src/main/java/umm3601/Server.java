@@ -25,7 +25,7 @@ public class Server {
         ToDoController toDoController = new ToDoController();
 
         //Line added to enable travis build
-        
+
         //Configure Spark
         port(4567);
         enableDebugScreen();

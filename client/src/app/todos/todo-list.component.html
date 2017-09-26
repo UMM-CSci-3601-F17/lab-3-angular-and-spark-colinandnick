@@ -1,0 +1,45 @@
+<ul class="list-group">
+    <li class="list-group-item list-group-item-info">
+
+        <!-- The names userName and userAge, different from searchName and searchAge, are being
+        used here only to illustrate that these inputs are not necessarily explicitly referencable from within
+        the typescript. Unless made to do so by defining a userName variable within this component's typescript file-->
+
+        <input #input type="text" placeholder="Specify Owner" (input)="ownerChange($event.target.value)">
+        Categories:
+        <select id='categories' #input type="text" placeholder="Filter by category" (input)="todoCategory = $event.target.value">
+            <option id="any" value="">Any category</option>
+            <option id="software-design" value="software design">Software Design</option>
+            <option id='homework' value="homework">Homework</option>
+            <option id="groceries" value="groceries">Groceries</option>
+            <option id="video-games" value="video games">Video Games</option>
+        </select>
+        <input #input type="text" placeholder="Filter by content" (input)="todoContent = $event.target.value">
+        <select #input type="text" placeholder="Filter by status" (input)="todoStatus=$event.target.value">
+            <option value="">Any status</option>
+            <option value="true">Complete</option>
+            <option value="false">Incomplete</option>
+        </select>
+
+        <button id="load-button" (click)="loadService()">Search</button>
+    </li>
+    <li id="title" class="list-group-item list-group-item-info">Tasks</li>
+</ul>
+
+<ul class="list-group" *ngIf="todos; else todosError">
+    <li id="todos" [ngStyle]="{'background-color':todo.status ? 'lightgreen' : 'lightcoral'}" *ngFor="let todo of this.filterTodos(todoOwner, todoCategory, todoContent, todoStatus)" class="list-group-item">
+        <p id="subject-line"> {{ todo.owner }} has {{todo.status ? 'completed':'not completed'}} this {{ todo.category }} task: </p>
+        <p id="bodyText"> {{ todo.body}} </p>
+    </li>
+</ul>
+
+<!-- comment>
+<!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
+<ng-template #todosError>
+    <p>
+        There was a problem loading the todos. Possibly the server is down or perhaps there are network issues.
+    </p>
+    <p>
+        Please wait a bit and try again.
+    </p>
+</ng-template>
