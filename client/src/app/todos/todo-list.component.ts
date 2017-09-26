@@ -22,7 +22,7 @@ export class TodoListComponent implements OnInit{
 
     }
 
-    public filterTodos(searchOwner: string, searchCategory: string, searchContent: string, searchStatus: string): Todo[] {
+    public filterTodos(searchCategory: string, searchContent: string, searchStatus: string): Todo[] {
 
         this.filteredTodos = this.todos;
 
@@ -31,15 +31,6 @@ export class TodoListComponent implements OnInit{
         displayed on the screen. For instance, an exact match is needed for searchCategory before any
         data is displayed.
          */
-
-        //Filter by name
-        if (searchOwner != null) {
-            searchOwner = searchOwner.toLocaleLowerCase();
-
-            this.filteredTodos = this.filteredTodos.filter(todo => {
-                return !searchOwner || todo.owner.toLowerCase().indexOf(searchOwner) !== -1;
-            });
-        }
 
         //Filter by category
         if (searchCategory != null) {
@@ -50,8 +41,9 @@ export class TodoListComponent implements OnInit{
 
         //Filter by content
         if (searchContent != null) {
+            searchContent = searchContent.toLocaleLowerCase();
             this.filteredTodos = this.filteredTodos.filter(todo => {
-                return !searchContent || todo.body.includes(searchContent);
+                return !searchContent || todo.body.toLowerCase().indexOf(searchContent) !== -1;
             })
         }
 
@@ -66,14 +58,8 @@ export class TodoListComponent implements OnInit{
         return this.filteredTodos;
     }
 
-    categoryChange(catStr): void{
-        this.todoListService.serviceCategory = catStr;
-    }
     ownerChange(ownStr): void{
         this.todoListService.serviceOwner = ownStr;
-    }
-    limitChange(limit): void{
-        this.todoListService.serviceLimit = limit;
     }
 
     loadService(): void {

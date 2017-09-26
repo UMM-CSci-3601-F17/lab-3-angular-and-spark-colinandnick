@@ -190,48 +190,40 @@ describe("Todo list filtering method", () => {
         });
     }));
 
-    it("can return todos that only belong to Jamie", () => {
-    expect(todoList.filterTodos("Jamie","","", null).length).toBe(2)
-    });
-
-    it("will not return todos that belong to Santa", () => {
-        expect(todoList.filterTodos("Santa","","", null).length).toBe(0)
-    });
-
     it("can return todos that are in the video games category", () => {
-        expect(todoList.filterTodos("","video games","", null).length).toBe(2)
+        expect(todoList.filterTodos("video games","", null).length).toBe(2)
     });
 
     it("will not return todos that are in the astronaut category", () => {
-        expect(todoList.filterTodos("","astronaut","", null).length).toBe(0)
+        expect(todoList.filterTodos("astronaut","", null).length).toBe(0)
     });
 
     it("can return todos that have the content 'rocket' in their body", () => {
-        expect(todoList.filterTodos("","","rocket", null).length).toBe(1)
+        expect(todoList.filterTodos("","rocket", null).length).toBe(1)
     });
 
     it("can return todos that have the letter 'o' in their body", () => {
-        expect(todoList.filterTodos("","","o", null).length).toBe(3)
+        expect(todoList.filterTodos("","o", null).length).toBe(3)
     });
 
     it("will not return todos that contain 'supercalifragileisticexpialadocious' in their body", () => {
-        expect(todoList.filterTodos("","","supercalifragileisticexpialadocious", null).length).toBe(0)
+        expect(todoList.filterTodos("","supercalifragileisticexpialadocious", null).length).toBe(0)
     });
 
     it("will not return todos that contain the letter 'z' in their body", () => {
-        expect(todoList.filterTodos("","","z", "").length).toBe(0)
+        expect(todoList.filterTodos("","z", "").length).toBe(0)
     });
 
     it("can return todos that only have a true status", () => {
-        expect(todoList.filterTodos("","","", "true").length).toBe(2)
+        expect(todoList.filterTodos("","", "true").length).toBe(2)
     });
 
     it("can return todos that only have a false status", () => {
-        expect(todoList.filterTodos("","","", "false").length).toBe(2)
+        expect(todoList.filterTodos("","", "false").length).toBe(2)
     });
 
     it("will return all todos if no status is specified", () => {
-        expect(todoList.filterTodos("","","", null).length).toBe(4)
+        expect(todoList.filterTodos("","", null).length).toBe(4)
     });
 
 

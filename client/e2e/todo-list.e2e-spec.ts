@@ -59,7 +59,7 @@ describe('angular-spark-lab', () => {
     it('Should only return todos that contain particular content', () => {
         page.navigateTo();
         page.filterByContent('Excepteur');
-        expect(page.getFirstTodo()).toEqual("Blanche has completed this homework task:")
+        expect(page.getFirstTodo()).toEqual("Blanche has not completed this homework task:")
     });
 
     it('Should correctly return todos that are filtered by multiple properties', () => {

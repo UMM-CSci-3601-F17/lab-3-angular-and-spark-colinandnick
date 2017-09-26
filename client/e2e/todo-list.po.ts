@@ -54,9 +54,6 @@ export class TodoPage {
         //this.toggleSearch();
     }
 
-    selectUpKey() {
-        browser.actions().sendKeys(Key.ARROW_UP).perform();
-    }
 
     filterByContent(content: string) {
         let input = element(by.id('content'));
