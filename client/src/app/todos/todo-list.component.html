@@ -6,13 +6,20 @@
         the typescript. Unless made to do so by defining a userName variable within this component's typescript file-->
         <input #input type="number" placeholder="Limit Results?" (input)="limitChange($event.target.value)">
         <input #input type="text" placeholder="Specify Owner" (input)="ownerChange($event.target.value)">
-        <input #input type="text" placeholder="Filter by category" (input)="todoCategory = $event.target.value">
+        <select #input type="text" placeholder="Filter by category" (input)="todoCategory = $event.target.value">
+            <option value="">Any category</option>
+            <option value="software design">Software Design</option>
+            <option value="homework">Homework</option>
+            <option value="groceries">Groceries</option>
+            <option value="video games">Video Games</option>
+        </select>
         <input #input type="text" placeholder="Filter by content" (input)="todoContent = $event.target.value">
         <select #input type="text" placeholder="Filter by status" (input)="todoStatus=$event.target.value">
-            <option value="">Any</option>
+            <option value="">Any status</option>
             <option value="true">Complete</option>
             <option value="false">Incomplete</option>
         </select>
+
         <button id="load-button" (click)="loadService()">Search</button>
     </li>
     <li id="title" class="list-group-item list-group-item-info">Tasks</li>
